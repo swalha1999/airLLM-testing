@@ -77,6 +77,9 @@ class AirLLMRunner:
         from airllm import AutoModel
         from huggingface_hub import snapshot_download
 
+        # AirLLM's disk-space check reads the shards path before creating it,
+        # so it must already exist.
+        Path(self.shards_path).mkdir(parents=True, exist_ok=True)
         ensure_safetensors_index(snapshot_download(self.model_id))
         self._model = AutoModel.from_pretrained(
             self.model_id,
