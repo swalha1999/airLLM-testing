@@ -12,7 +12,7 @@ Owner for all tasks: Mhmdabad (executed via AI agent).
 > own test file (happy + error path), stays ≤150 lines, passes Ruff clean, and routes
 > external calls through the gatekeeper. See [PLAN.md](PLAN.md) §2 for all enforced standards.
 
-## Phase 0 — Planning  🟡
+## Phase 0 — Planning  ✅
 - ✅ Read assignment + submission guidelines
 - ✅ Capture target hardware specs
 - ✅ Write `docs/PRD.md`
@@ -20,7 +20,7 @@ Owner for all tasks: Mhmdabad (executed via AI agent).
 - ✅ Write `docs/TODO.md`
 - ✅ Add consolidated Coding Standards section (PLAN §2); set full-V3-compliance target
 - ✅ Write dedicated PRDs: `PRD_airllm_sharding.md`, `PRD_quantization.md`, `PRD_cost_model.md`
-- ⬜ **Approve all docs before development** *(definition of done: user sign-off)*
+- ✅ **Approve all docs before development** *(signed off by Mhmdabad — see #3)*
 
 ## Phase 1 — Setup & Downloads  🟡
 *(est. 1.5–3 h, mostly passive download time)*
