@@ -1,0 +1,24 @@
+{
+  "rate_limits": {
+    "version": "1.00",
+    "services": {
+      "default": {
+        "requests_per_minute": 30,
+        "requests_per_hour": 500,
+        "concurrent_max": 5,
+        "retry_after_seconds": 30,
+        "max_retries": 3
+      },
+      "huggingface_hub": {
+        "requests_per_minute": 60,
+        "requests_per_hour": 1000,
+        "concurrent_max": 4,
+        "retry_after_seconds": 10,
+        "max_retries": 5
+      }
+    },
+    "queue": {
+      "max_depth": 100
+    }
+  }
+}

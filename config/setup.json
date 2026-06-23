@@ -1,0 +1,29 @@
+{
+  "version": "1.00",
+  "paths": {
+    "layer_shards_saving_path": "C:/airllm_shards",
+    "results_dir": "results",
+    "figures_dir": "figures"
+  },
+  "models": {
+    "smoke_test": "Qwen/Qwen2.5-0.5B",
+    "main": "Qwen/Qwen2.5-7B",
+    "baseline_ollama": "qwen2.5:7b"
+  },
+  "quant_levels": ["FP16", "Q8", "Q4"],
+  "run": {
+    "max_new_tokens": 128,
+    "warmup_runs": 0,
+    "ram_sample_interval_s": 0.5
+  },
+  "prompts": [
+    {
+      "id": "short_factual_01",
+      "text": "Explain what a transformer model is in two sentences."
+    },
+    {
+      "id": "long_context_01",
+      "text": "Summarize the key trade-offs of running a large language model locally versus calling a hosted API, covering memory, latency, and cost."
+    }
+  ]
+}

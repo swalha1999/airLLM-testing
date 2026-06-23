@@ -1,0 +1,24 @@
+{
+  "version": "1.00",
+  "api_providers": {
+    "gpt-4o": {
+      "input_usd_per_1m_tokens": 2.5,
+      "output_usd_per_1m_tokens": 10.0
+    },
+    "claude-sonnet": {
+      "input_usd_per_1m_tokens": 3.0,
+      "output_usd_per_1m_tokens": 15.0
+    }
+  },
+  "on_prem": {
+    "hardware_capex_usd": 1200.0,
+    "hardware_lifetime_months": 36,
+    "device_power_watts": 45,
+    "electricity_usd_per_kwh": 0.16,
+    "maintenance_usd_per_month": 5.0
+  },
+  "cloud_gpu": {
+    "usd_per_hour": 0.6
+  },
+  "notes": "Dated-snapshot assumptions for the break-even analysis (see docs/PRD_cost_model.md). All values are overridable assumptions and live only here, never hard-coded in source."
+}
