@@ -8,15 +8,18 @@ from .gatekeeper import (
     ServiceLimits,
     limits_for,
 )
+from .recorder import SCHEMA_VERSION, ResultRecorder
 from .version import __version__, get_version
 
 __all__ = [
+    "SCHEMA_VERSION",
     "ApiGatekeeper",
     "ConfigError",
     "ConfigLoader",
     "LoadedConfig",
     "QueueFullError",
     "QueueStatus",
+    "ResultRecorder",
     "ServiceLimits",
     "__version__",
     "get_version",
