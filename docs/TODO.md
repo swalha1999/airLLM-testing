@@ -19,7 +19,7 @@ Owner for all tasks: Mhmdabad (executed via AI agent).
 - ✅ Write `docs/PLAN.md`
 - ✅ Write `docs/TODO.md`
 - ✅ Add consolidated Coding Standards section (PLAN §2); set full-V3-compliance target
-- ⬜ Write dedicated PRDs: `PRD_airllm_sharding.md`, `PRD_quantization.md`, `PRD_cost_model.md`
+- ✅ Write dedicated PRDs: `PRD_airllm_sharding.md`, `PRD_quantization.md`, `PRD_cost_model.md`
 - ⬜ **Approve all docs before development** *(definition of done: user sign-off)*
 
 ## Phase 1 — Setup & Downloads  ⬜
