@@ -22,9 +22,11 @@ Owner for all tasks: Mhmdabad (executed via AI agent).
 - ✅ Write dedicated PRDs: `PRD_airllm_sharding.md`, `PRD_quantization.md`, `PRD_cost_model.md`
 - ⬜ **Approve all docs before development** *(definition of done: user sign-off)*
 
-## Phase 1 — Setup & Downloads  ⬜
+## Phase 1 — Setup & Downloads  🟡
 *(est. 1.5–3 h, mostly passive download time)*
-- ⬜ `uv python install 3.11`; `uv init` project on 3.11 *(DoD: `uv run python --version` → 3.11)*
+- ✅ `uv python install 3.12`; init project on 3.12 + `.python-version` *(DoD: `uv run python --version` → 3.12)*
+- ✅ CI quality-gates workflow (`.github/workflows/ci.yml`): ruff check/format, pytest+coverage, guarded line-limit + secret-scan steps
+- ✅ Minimal package skeleton + `version.py` + first passing test (green CI baseline)
 - ⬜ `uv add` deps: airllm, torch (CPU), transformers, accelerate, bitsandbytes, huggingface_hub, psutil, nvidia-ml-py, matplotlib, pandas, numpy *(DoD: `uv.lock` committed)*
 - ⬜ `uv add --dev` ruff, pytest, pytest-cov
 - ⬜ Configure `pyproject.toml`: ruff (`E,F,W,I,N,UP,B,C4,SIM`) + coverage `fail_under = 85`

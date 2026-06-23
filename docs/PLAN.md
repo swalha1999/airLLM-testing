@@ -124,7 +124,7 @@ listed once here so it is explicit rather than scattered.
 ## 7. Architecture Decision Records (ADRs)
 
 - **ADR-1 — Package manager: `uv`.** Mandated; reproducible via `uv.lock`. pip/venv rejected (forbidden).
-- **ADR-2 — Python 3.11.** torch/transformers/bitsandbytes have no wheels for 3.14 (installed default). 3.11 broadly supported.
+- **ADR-2 — Python 3.12.** torch/transformers/bitsandbytes have no wheels for 3.14 (installed default). 3.12 is fully supported by torch 2.2+ and the rest of the stack; pinned via `.python-version`.
 - **ADR-3 — Model family: Qwen2.5.** Recommended; works with `AutoModel` (avoids class-mismatch). 0.5B (smoke-test) → 7B (main).
 - **ADR-4 — Model size ≤7B.** 44 GB free disk must hold FP16 download (~15 GB) **plus** AirLLM's per-layer shards (~15 GB). 14B+ overflows. 15 GB model vs 15.7 GB RAM still demonstrates the bottleneck cleanly.
 - **ADR-5 — Baseline via Ollama.** Installed; clean optimized direct run to contrast with AirLLM. HF direct load as secondary baseline.
@@ -182,6 +182,6 @@ Central mechanisms get their own PRD under `docs/`:
 | bitsandbytes fails on Windows/CPU | Document as result; compare quant levels that work |
 | Disk overflow from shards | Pin shard path; cap model ≤7B; clear space before download |
 | Runs take hours | Start tiny (0.5B, Q2) to validate pipeline before scaling; cap `max_new_tokens` |
-| Python 3.14 incompatibility | Pin 3.11 via `uv python install 3.11` |
+| Python 3.14 incompatibility | Pin 3.12 via `uv python install 3.12` + `.python-version` |
 | Inconsistent measurements | All scenarios go through the same SDK `measure` path |
 | 85% coverage hard on model I/O | Mock model/API in tests; cover harness logic (SDK, measure, recorder, costs, gatekeeper) |
