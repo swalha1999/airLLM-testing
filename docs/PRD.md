@@ -116,7 +116,7 @@ etc.) are specified once in [PLAN.md](PLAN.md) §2 and apply to all code. Projec
 **Constraints:**
 - Disk free ~44 GB → caps practical model size at ~7B (download + shards).
 - 2 GB VRAM → runs are effectively CPU / memory-bound (reinforces the analysis).
-- Python must be 3.11 (3.14 has no torch/bitsandbytes wheels).
+- Python must be 3.12 (3.14 has no torch/bitsandbytes wheels).
 - bitsandbytes on Windows/CPU is fragile — failure is an acceptable, documented result.
 
 **Out-of-scope:** training from scratch; serving infrastructure; multi-node; chasing model

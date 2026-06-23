@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Secrets — never commit (V3 S4)
+.env
+*.key
+*.pem
+credentials.json
+
+# Model weights / AirLLM shards / large artifacts (kept off git)
+models/
+shards/
+layer_shards/
+*.safetensors
+*.gguf
+*.bin
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
