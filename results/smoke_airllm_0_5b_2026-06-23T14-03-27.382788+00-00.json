@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-23T14:03:27.382788+00:00",
+  "scenario": "smoke_airllm_0_5b",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "compression": "FP16",
+  "status": "documented_failure",
+  "error": "IndexError: list index out of range",
+  "finding": "AirLLM sharded all layers, but generation fails: Qwen2.5-0.5B has tied embeddings (no lm_head) and a single-file checkpoint, which AirLLM does not support. The 7B main model is natively compatible.",
+  "metrics": {
+    "total_runtime_s": 14.838
+  }
+}

@@ -18,14 +18,20 @@ dependencies = [
 
 [project.optional-dependencies]
 # Heavy model-runtime deps — install locally with: uv sync --extra ml
+# Version pins driven by airllm 2.11's import chain: it imports
+# optimum.bettertransformer (removed in optimum 2.0), and that module in
+# optimum 1.x requires transformers<4.49. So we cap optimum <2 and
+# transformers <4.49; the unpinned latest versions break the import.
 ml = [
     "torch>=2.2",
     "airllm>=2.11",
-    "transformers>=4.40",
+    "transformers>=4.40,<4.49",
+    "optimum>=1.20,<2",
     "accelerate>=0.30",
     "bitsandbytes>=0.43",
     "huggingface-hub>=0.23",
     "nvidia-ml-py>=12.0",
+    "sentencepiece>=0.2",
 ]
 
 [dependency-groups]
