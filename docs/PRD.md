@@ -86,12 +86,19 @@ worth doing locally instead of calling a hosted API?*
 
 ## 5. Non-Functional Requirements
 
+**Compliance target: full adherence to Submission Guidelines V3.** The enforced coding
+standards (file size, SDK, gatekeeper, versioning, TDD/coverage, linting, package layout,
+etc.) are specified once in [PLAN.md](PLAN.md) §2 and apply to all code. Project-level NFRs:
+
 - **NFR1 — Reproducibility:** all raw numbers saved to `results/`; graphs regenerated from them.
 - **NFR2 — Tooling:** `uv` only (no pip/venv/python -m); `uv.lock` committed.
 - **NFR3 — Security:** no HuggingFace token or secrets in code; `.env` (gitignored) + `.env-example`.
-- **NFR4 — Code quality:** files ≤150 LOC, docstrings, descriptive names, no duplication.
+- **NFR4 — Code quality:** files ≤150 LOC, docstrings, descriptive names, no duplication, SDK layer.
 - **NFR5 — Presentation:** README is self-contained; all figures/tables embedded inline.
 - **NFR6 — Honesty:** report failures faithfully; document negative results with analysis.
+- **NFR7 — Testing:** TDD; global test coverage ≥85% (suite fails below); external deps mocked.
+- **NFR8 — Linting:** zero Ruff violations across the project.
+- **NFR9 — Versioning:** code + every config versioned from 1.00; config version checked at startup.
 
 ## 6. Research Questions (must be answered in the report)
 
