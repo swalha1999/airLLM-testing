@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-23T14:09:34.363246+00:00",
+  "scenario": "bnb_check_q4_0_5b",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "compression": "Q4(4bit)",
+  "status": "documented_failure",
+  "error": "AssertionError: Torch not compiled with CUDA enabled",
+  "finding": "bitsandbytes 4-bit quantization requires a CUDA GPU. On this CPU-only machine (torch 2.12.1+cpu, no usable CUDA) AirLLM's compression='4bit' fails during the layer-compression step with 'Torch not compiled with CUDA enabled'. Q4/Q8 are unavailable on this hardware; the experiment runs FP16 via AirLLM CPU sharding.",
+  "metrics": {
+    "total_runtime_s": 8.095
+  }
+}
