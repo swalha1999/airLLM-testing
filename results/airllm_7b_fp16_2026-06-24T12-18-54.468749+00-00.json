@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-24T12:18:54.468749+00:00",
+  "scenario": "airllm_7b_fp16",
+  "model": "Qwen/Qwen2.5-7B",
+  "engine": "airllm-fp16-cpu",
+  "max_new_tokens": 8,
+  "status": "success",
+  "output": "Explain what a transformer model is in two sentences. A transformer model is a type of neural",
+  "metrics": {
+    "peak_ram_gb": 7.738,
+    "peak_vram_gb": 0.088,
+    "total_runtime_s": 797.618,
+    "throughput_tok_s": 0.01003
+  }
+}
