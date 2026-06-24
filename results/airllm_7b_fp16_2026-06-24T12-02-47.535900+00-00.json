@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-24T12:02:47.535900+00:00",
+  "scenario": "airllm_7b_fp16",
+  "model": "Qwen/Qwen2.5-7B",
+  "engine": "airllm-fp16-cpu",
+  "max_new_tokens": 8,
+  "status": "documented_failure",
+  "error": "TypeError: cannot unpack non-iterable NoneType object",
+  "metrics": {
+    "peak_ram_gb": 4.753,
+    "peak_vram_gb": 0.094,
+    "total_runtime_s": 1420.714,
+    "throughput_tok_s": 0
+  }
+}
