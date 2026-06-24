@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-24T13:15:10.116746+00:00",
+  "scenario": "break_even",
+  "provider": "gpt-4o",
+  "assumptions": {
+    "input_tokens_per_request": 500,
+    "output_tokens_per_request": 500,
+    "local_throughput_tok_s": 0.79,
+    "hardware_capex_usd": 1200.0,
+    "hardware_lifetime_months": 36,
+    "device_power_watts": 45,
+    "electricity_usd_per_kwh": 0.16,
+    "maintenance_usd_per_month": 5.0
+  },
+  "api_cost_per_request_usd": 0.00625,
+  "onprem_fixed_monthly_usd": 38.33,
+  "onprem_electricity_per_request_usd": 0.001266,
+  "break_even_requests_per_month": 7691
+}
