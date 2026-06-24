@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-24T11:25:33.205269+00:00",
+  "scenario": "baseline_hf_direct_fp16",
+  "model": "Qwen/Qwen2.5-7B",
+  "engine": "hf-fp16",
+  "status": "success",
+  "output": " A transformer model is a type of neural network architecture that is used for natural language processing tasks such as machine translation, text summarization, and language generation. It",
+  "metrics": {
+    "peak_ram_gb": 11.727,
+    "peak_vram_gb": 0.425,
+    "total_runtime_s": 8070.558
+  }
+}
