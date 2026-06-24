@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-24T13:02:37.178955+00:00",
+  "scenario": "baseline_ollama_q4",
+  "metrics": {
+    "ttft_s": 52.312241,
+    "tpot_ms": 456.008685,
+    "throughput_tok_s": 0.807486,
+    "peak_ram_gb": 0.048263,
+    "peak_vram_gb": 0.425406,
+    "total_runtime_s": 82.973535,
+    "output_tokens": 67,
+    "est_power_wh": 1.037169
+  },
+  "output": "A transformer model is a type of neural network architecture used primarily for processing sequential data, such as text or audio, known for its ability to handle long-range dependencies efficiently without relying on recurrent structures. It achieves this through mechanisms like self-attention, which allows it to weigh the importance of different elements in the sequence independently of their position.",
+  "model": "qwen2.5:7b",
+  "engine": "ollama-gguf-q4",
+  "prompt": "Explain what a transformer model is in two sentences."
+}

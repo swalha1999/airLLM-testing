@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-24T13:03:03.561924+00:00",
+  "scenario": "quality_assessment",
+  "rows": [
+    {
+      "scenario": "baseline_ollama_q4",
+      "output": "A transformer model is a type of neural network architecture used primarily for processing sequential data, such as text or audio, known for its ability to handle long-range dependencies efficiently without relying on recurrent structures. It achieves this through mechanisms like self-attention, which allows it to weigh the importance of different elements in the sequence independently of their position.",
+      "precision": "~Q4 (GGUF)",
+      "coherence": 5,
+      "relevance": 5,
+      "fluency": 5,
+      "note": "Complete, accurate, fluent answer; no visible quantization degradation."
+    },
+    {
+      "scenario": "baseline_hf_direct_fp16",
+      "output": "A transformer model is a type of neural network architecture that is used for natural language processing tasks such as machine translation, text summarization, and language generation. It",
+      "precision": "FP16",
+      "coherence": 5,
+      "relevance": 5,
+      "fluency": 5,
+      "note": "Complete, accurate, fluent (truncated at the 32-token cap)."
+    },
+    {
+      "scenario": "airllm_7b_fp16",
+      "output": "Explain what a transformer model is in two sentences. A transformer model is a type of neural",
+      "precision": "FP16",
+      "coherence": 5,
+      "relevance": 5,
+      "fluency": 4,
+      "note": "On-topic and correct, but only 8 tokens (cap) so partial; echoes the prompt."
+    }
+  ],
+  "red_line": "Not reached: only FP16 and ~Q4 were runnable (bitsandbytes Q8/Q4 are CUDA-gated, #15). Both produced coherent output, so no quality red line was crossed in the testable range."
+}
