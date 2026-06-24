@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.00",
+  "code_version": "1.00",
+  "timestamp": "2026-06-24T12:52:56.247501+00:00",
+  "scenario": "quantization_comparison",
+  "regimes": {
+    "fp16_airllm": {
+      "disk_gb": 15.0,
+      "peak_ram_gb": 7.738,
+      "peak_vram_gb": 0.088,
+      "total_runtime_s": 797.618,
+      "throughput_tok_s": 0.01003
+    },
+    "q4_ollama_gguf": {
+      "disk_gb": 4.7,
+      "ttft_s": 46.343009,
+      "tpot_ms": 206.011865,
+      "throughput_tok_s": 0.794445,
+      "peak_ram_gb": 0.048415,
+      "peak_vram_gb": 0.425406,
+      "total_runtime_s": 55.384599,
+      "output_tokens": 44,
+      "est_power_wh": 0.692307
+    }
+  },
+  "q4_vs_fp16_speedup_x": 79.2,
+  "disk_shrink_x": 3.2,
+  "bitsandbytes_q4_q8": {
+    "status": "documented_failure",
+    "finding": "bitsandbytes 4-bit quantization requires a CUDA GPU. On this CPU-only machine (torch 2.12.1+cpu, no usable CUDA) AirLLM's compression='4bit' fails during the layer-compression step with 'Torch not compiled with CUDA enabled'. Q4/Q8 are unavailable on this hardware; the experiment runs FP16 via AirLLM CPU sharding."
+  }
+}
