@@ -55,7 +55,11 @@ def test_run_scenario_defaults_metadata_to_empty() -> None:
     sdk, _, recorder = _sdk()
     result = sdk.run_scenario("airllm_q4", lambda: "x")
     assert result.metadata == {}
-    assert recorder.saved[0] == {"scenario": "airllm_q4", "metrics": {"throughput_tok_s": 1.5}}
+    assert recorder.saved[0] == {
+        "scenario": "airllm_q4",
+        "metrics": {"throughput_tok_s": 1.5},
+        "output": "x",
+    }
 
 
 def test_empty_scenario_name_rejected() -> None:

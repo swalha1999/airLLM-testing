@@ -73,5 +73,5 @@ class BenchmarkSDK:
         metrics = measured.get("metrics", {})
         output = measured.get("output")
         meta = metadata or {}
-        self.save_result({"scenario": scenario, "metrics": metrics, **meta})
+        self.save_result({"scenario": scenario, "metrics": metrics, "output": output, **meta})
         return ScenarioResult(scenario=scenario, metrics=metrics, output=output, metadata=meta)
