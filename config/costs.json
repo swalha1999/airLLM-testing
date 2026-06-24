@@ -1,5 +1,10 @@
 {
-  "version": "1.00",
+  "version": "1.10",
+  "workload": {
+    "input_tokens_per_request": 500,
+    "output_tokens_per_request": 500,
+    "local_throughput_tok_s": 0.79
+  },
   "api_providers": {
     "gpt-4o": {
       "input_usd_per_1m_tokens": 2.5,

@@ -40,3 +40,31 @@ def bar_chart(
     fig.savefig(path, dpi=150)
     plt.close(fig)
     return path
+
+
+def line_chart(
+    series: dict[str, tuple[list[float], list[float]]],
+    title: str,
+    xlabel: str,
+    ylabel: str,
+    out_path: str | Path,
+    *,
+    vline: float | None = None,
+) -> Path:
+    """Write a multi-line chart (``label -> (xs, ys)``); optional vertical marker."""
+    path = Path(out_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig, ax = plt.subplots(figsize=(7, 4))
+    for index, (label, (xs, ys)) in enumerate(series.items()):
+        ax.plot(xs, ys, label=label, color=_PALETTE[index % len(_PALETTE)])
+    if vline is not None:
+        ax.axvline(vline, color="#888", linestyle="--", label=f"break-even ≈ {vline:.0f}")
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.legend()
+    ax.grid(alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
