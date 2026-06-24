@@ -9,5 +9,6 @@ All generated from saved data (no re-running). Regenerate with the listed comman
 | `runtime_comparison.png` | Total runtime (s, log) — Ollama 55 s, AirLLM 798 s, HF direct 8,070 s (differing token counts) | `experiments/make_figures.py` |
 | `break_even.png` | On-Prem vs API monthly cost vs request volume; break-even ≈ 7,691/month (#23) | `experiments/break_even.py` |
 | `roofline.png` | Batch-1 decode (~1 FLOP/byte) sits on the bandwidth slope, far below the compute ceiling — memory/IO-bound (#25) | `experiments/roofline.py` |
+| `sensitivity.png` | OAT sensitivity of the break-even — strong to API price (inverse) & CAPEX (direct), weak to electricity (#26) | `experiments/sensitivity.py` |
 
 Charts use a consistent palette and value labels (V3 §9.3) and are embedded in the README report.
