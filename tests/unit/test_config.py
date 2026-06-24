@@ -63,6 +63,6 @@ def test_real_repo_configs_load() -> None:
     """The actual shipped config files load and validate at version 1.00."""
     loader = ConfigLoader(_REPO_CONFIG_DIR)
     assert loader.load("setup", "1.00").data["models"]
-    assert loader.load("costs", "1.00").data["on_prem"]
+    assert loader.load("costs", "1.10").data["on_prem"]
     rate = loader.load("rate_limits", "1.00", version_key="rate_limits.version")
     assert rate.data["rate_limits"]["services"]["default"]
