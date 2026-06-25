@@ -30,6 +30,69 @@ LLM inference on constrained hardware. A negative result, well analyzed, is a re
 
 ---
 
+## Setup & reproduction
+
+> **You do not need to run any model to reproduce the analysis.** Every figure and table is
+> regenerated from the saved records in `results/`. Re-running the models is optional and
+> needs the heavy stack + a HuggingFace token.
+
+### Prerequisites
+- [`uv`](https://docs.astral.sh/uv/) — the only package manager used (no pip / venv).
+- *Optional, only to re-run model experiments:* [Ollama](https://ollama.com), a free
+  HuggingFace account + **read** token, and ~30 GB free disk.
+
+### Install (base env — no torch, no token)
+```bash
+git clone https://github.com/swalha1999/airLLM-testing.git
+cd airLLM-testing
+uv python install 3.12
+uv sync          # ruff, pytest, and the analysis deps (numpy/pandas/matplotlib)
+```
+
+### Reproduce the analysis & figures (base env, no models)
+All of these read the committed records in `results/`:
+```bash
+uv run python experiments/consolidate_metrics.py    # the metrics table
+uv run python experiments/compare_quantization.py   # FP16 vs ~Q4
+uv run python experiments/assess_quality.py          # output-quality rubric
+uv run python experiments/make_figures.py            # comparison charts -> figures/
+uv run python experiments/break_even.py              # economics + break-even chart
+uv run python experiments/sensitivity.py             # sensitivity extension
+uv run python experiments/roofline.py                # roofline
+```
+
+### Run the quality gate
+```bash
+uv run python scripts/test_report.py        # pytest + coverage -> reports/test_report.md
+uv run ruff check .                          # 0 violations
+uv run python scripts/secret_scan.py         # no committed secrets
+uv run python scripts/check_line_limit.py    # every .py file <= 150 code lines
+```
+
+### Re-run the model experiments (heavy — optional)
+Only needed to regenerate raw results; the committed ones already cover everything. Requires
+the `ml` extra (~4 GB: torch / airllm / bitsandbytes) and a token in `.env`:
+```bash
+uv sync --extra ml
+cp .env-example .env          # then edit .env and set HF_TOKEN=hf_...
+ollama pull qwen2.5:7b        # the baseline model
+uv run --extra ml python experiments/baseline_ollama.py
+uv run --extra ml python experiments/baseline_hf_direct.py   # ~2 h; deliberately exceeds RAM
+uv run --extra ml python experiments/airllm_7b.py            # shards ~15 GB to C:\airllm_shards, slow
+uv run --extra ml python experiments/bitsandbytes_check.py   # documents the CUDA-only failure
+```
+> ⚠️ `baseline_hf_direct.py` intentionally over-commits RAM and will make the machine sluggish
+> for a couple of hours — that *is* the bottleneck being demonstrated.
+
+### Configuration
+All tunable values live in versioned `config/*.json` (no hard-coding) — change them and the
+analysis recomputes:
+- `setup.json` — model ids, shard path, prompts, run params.
+- `costs.json` — API prices + hardware/electricity assumptions (drive the break-even).
+- `rate_limits.json` — API gatekeeper limits.
+
+---
+
 ## 1. The machine under test (FR-a)
 
 | Resource | Value |
