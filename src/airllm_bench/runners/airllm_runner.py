@@ -26,13 +26,15 @@ def ensure_safetensors_index(snapshot_dir: str | Path) -> bool:
     models (just ``model.safetensors``) lack one, so we synthesise it. Returns
     True if an index was created, False if one already existed or is not needed.
     """
-    from safetensors import safe_open
-
     snap = Path(snapshot_dir)
     index = snap / "model.safetensors.index.json"
     weights = snap / "model.safetensors"
     if index.exists() or not weights.exists():
         return False
+    # Imported lazily, only on the create path, so the guard branches above are
+    # importable/testable without the heavy ml stack (e.g. in CI).
+    from safetensors import safe_open
+
     with safe_open(str(weights), framework="pt") as handle:
         keys = list(handle.keys())
     index.write_text(
