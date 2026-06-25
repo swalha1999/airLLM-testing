@@ -76,6 +76,10 @@ Two baseline runs of the 7B (see `reports/phase3_baseline_findings.md`):
 
 That is a textbook **memory-bound** bottleneck: the CPU was waiting on data, not computing.
 
+![Task Manager during the FP16 direct load — RAM 99% (238 MB free), Disk 100%, Committed 30.6/38.4 GB (~15 GB in swap), GPU idle](assets/task_manager_screenshots/Screenshot%202026-06-24%20122627.jpg)
+
+![Total runtime by scenario, log scale — Ollama 55 s vs AirLLM 798 s vs HF direct 8,070 s](figures/runtime_comparison.png)
+
 ## 5. AirLLM — making it fit (FR-c)
 
 Run the *same* 7B through AirLLM, which loads **one transformer layer at a time** from disk
@@ -88,6 +92,10 @@ Run the *same* 7B through AirLLM, which loads **one transformer layer at a time*
 
 **AirLLM buys feasibility, not speed.** It turns the model from un-runnable into runnable by
 keeping the working set tiny — the cost is latency.
+
+![Task Manager during the AirLLM run — RAM 50% (8 GB free), Disk 21%, no swap — the inverse of the baseline](assets/task_manager_screenshots_after/Screenshot%202026-06-24%20143851.jpg)
+
+![Peak process RAM for the same FP16 7B — AirLLM 7.74 GB (no swap) vs naive direct load 11.7 GB (+~15 GB swap)](figures/peak_ram_comparison.png)
 
 > Two real dependency walls were hit and documented: AirLLM 2.11 needs `transformers<4.49`
 > (optimum's BetterTransformer) **and** `transformers<4.43` (it predates the RoPE refactor that
@@ -108,6 +116,8 @@ kernels are **CUDA-only** and abort with `Torch not compiled with CUDA enabled` 
 → **~3.2× smaller, ~79× faster.** *Honest caveat:* this crosses two engines (AirLLM disk
 streaming vs llama.cpp in-memory), so most of the speed gap is engine/IO, not precision alone —
 we can't isolate precision because bitsandbytes won't run.
+
+![Throughput — Ollama Q4 (0.79 tok/s) vs AirLLM FP16 (0.010 tok/s), log scale](figures/throughput_comparison.png)
 
 ## 7. Consolidated metrics (FR-d)
 
@@ -148,6 +158,8 @@ feasibility tool is *not* the economic tool. **Recommendation:** API for low/bur
 latency-sensitive use; on-prem for high steady volume or when **data privacy/control** matters
 (`reports/phase4_economics.md`).
 
+![On-Prem vs API — monthly cost vs request volume; break-even ≈ 7,691 requests/month](figures/break_even.png)
+
 ## 10. Why it happens — concept analysis (FR-f)
 
 - **Prefill vs Decode → TTFT vs TPOT:** the clean run's 46 s TTFT is dominated by one-time model
@@ -160,6 +172,8 @@ latency-sensitive use; on-prem for high steady volume or when **data privacy/con
   no swap). Same disk-bound reality — chaotic vs controlled. Full discussion in
   `reports/phase4_concept_analysis.md`.
 
+![Roofline — batch-1 decode (~1 FLOP/byte) sits on the bandwidth slope, far below the compute ceiling](figures/roofline.png)
+
 ## 11. Extension — break-even sensitivity (FR-g)
 
 An original one-at-a-time (OAT) **sensitivity analysis** turns the single break-even number into
@@ -167,6 +181,8 @@ a robustness statement. Varying each assumption 0.5×–2×: the decision is **s
 API price (inverse) and hardware CAPEX (direct), but barely to electricity**. Across realistic
 variation the break-even stays in **~3,800–15,400 requests/month**
 (`reports/phase4_extension_sensitivity.md`).
+
+![Break-even sensitivity (OAT) — strongly sensitive to API price (inverse) and CAPEX (direct), weak to electricity](figures/sensitivity.png)
 
 ## 12. Research questions answered
 
