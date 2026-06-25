@@ -276,3 +276,19 @@ variation the break-even stays in **~3,800–15,400 requests/month**
 | `docs/` | PRD / PLAN / TODO + dedicated mechanism PRDs |
 
 Detailed findings live in `reports/`; this README is the integrated summary.
+
+## License & credits
+
+Released under the **MIT License** — see [`LICENSE`](LICENSE).
+
+Built on these third-party projects (with thanks to their authors and maintainers):
+
+- **[AirLLM](https://github.com/lyogavin/airllm)** — layer-by-layer inference that makes the oversized model fit.
+- **[Hugging Face Transformers / Hub](https://huggingface.co)** and **Optimum** — model loading and weights.
+- **[Qwen2.5](https://huggingface.co/Qwen)** (Alibaba) — the model family used (Apache-2.0).
+- **[Ollama](https://ollama.com)** / **llama.cpp** — the quantized GGUF baseline.
+- **PyTorch**, **bitsandbytes**, **matplotlib**, **pandas**, **NumPy**, **psutil**.
+- Tooling: **[uv](https://docs.astral.sh/uv/)**, **Ruff**, **pytest**.
+
+Model weights and the Qwen2.5 models are the property of their respective owners and are used
+under their own licenses.
